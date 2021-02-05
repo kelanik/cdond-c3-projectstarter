@@ -211,7 +211,7 @@ jobs:
           command: |
             ls
             cat inventory
-            ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory -k configure-server.yml
+            ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}     
 
@@ -308,7 +308,7 @@ jobs:
             ls
             cat inventory
             ls 
-            ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory -k deploy-backend.yml
+            ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory deploy-backend.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations:

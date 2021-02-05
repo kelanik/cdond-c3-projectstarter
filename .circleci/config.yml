@@ -200,7 +200,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: cp ~/.ssh/id_rsa_515543297b169585dd2f45de1afba5b4 ~/.ssh/IAM-keypair.pem
+          command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
       - run:
           name: Install dependencies
           command: |
@@ -296,6 +296,8 @@ jobs:
           command: |
             apk add --update tar gzip ansible nodejs npm
             pip install awscli
+      - run:
+          command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
       - run:
           name: Deploy backend
           no_output_timeout: 30m

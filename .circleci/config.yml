@@ -212,10 +212,11 @@ jobs:
             cat ~/.ssh/id_rsa
             cat ~/.ssh/id_rsa.pub >> ~/.ssh/known_hosts
             cat ~/.ssh/known_hosts
-            cp ~/.ssh/id_rsa.pub ~/.ssh/IAM-keypair.pem
+            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
             ls -l ~/.ssh/
             ls
             cat inventory
+            ansible web -m ping -vvv
             ansible-playbook -u ubuntu --ssh-common-args='-o StrictHostKeyChecking=no' --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}     

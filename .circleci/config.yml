@@ -207,9 +207,8 @@ jobs:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
-            ls -la ~/.ssh/
-            cat ~/.ssh/id_rsa*
-            command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
+            ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
+            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
             ls -la ~/.ssh/
             ls
             cat inventory
@@ -299,14 +298,15 @@ jobs:
             apk add --update tar gzip ansible nodejs npm
             pip install awscli
       - run:
-          command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
-      - run:
           name: Deploy backend
           no_output_timeout: 30m
           command: |
             tar -C backend -czvf artifact.tar.gz .
             ls
             cd ./.circleci/ansible
+            ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
+            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
+            ls -la ~/.ssh/
             ls
             cat inventory
             ls 

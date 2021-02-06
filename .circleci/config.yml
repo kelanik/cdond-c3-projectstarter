@@ -202,13 +202,13 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible
+            apk add --update ansible openssh
       - run:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
-            sudo ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
-            sudo cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
+            ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
+            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
             ls -l ~/.ssh/
             ls
             cat inventory
@@ -295,7 +295,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update tar gzip ansible nodejs npm
+            apk add --update tar gzip ansible nodejs npm openssh
             pip install awscli
       - run:
           name: Deploy backend

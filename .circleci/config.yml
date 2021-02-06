@@ -216,7 +216,7 @@ jobs:
             ls -l ~/.ssh/
             ls
             cat inventory
-            ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml
+            ansible-playbook -u ubuntu --ssh-common-args='-o StrictHostKeyChecking=no' --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}     
 

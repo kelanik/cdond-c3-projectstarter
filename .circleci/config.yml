@@ -207,9 +207,9 @@ jobs:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
-            ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
-            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
-            ls -la ~/.ssh/
+            sudo ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
+            sudo cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
+            ls -l ~/.ssh/
             ls
             cat inventory
             ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml

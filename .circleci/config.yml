@@ -207,6 +207,7 @@ jobs:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
+            mv ~/.ssh/id_rsa ~/.ssh/id_rsa_org
             ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
             cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
             ls -l ~/.ssh/

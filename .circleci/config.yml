@@ -209,7 +209,10 @@ jobs:
           command: |
             mv ~/.ssh/id_rsa ~/.ssh/id_rsa_org
             ssh-keygen -q -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
-            cp ~/.ssh/id_rsa ~/.ssh/IAM-keypair.pem
+            cat ~/.ssh/id_rsa
+            cat ~/.ssh/id_rsa.pub >> ~/.ssh/known_hosts
+            cat ~/.ssh/known_hosts
+            cp ~/.ssh/id_rsa.pub ~/.ssh/IAM-keypair.pem
             ls -l ~/.ssh/
             ls
             cat inventory

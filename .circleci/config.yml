@@ -200,8 +200,6 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
-      - run:
           name: Install dependencies
           command: |
             apk add --update ansible
@@ -209,6 +207,10 @@ jobs:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
+            ls -la ~/.ssh/
+            cat ~/.ssh/id_rsa*
+            command: cp ~/.ssh/id_rsa* ~/.ssh/IAM-keypair.pem
+            ls -la ~/.ssh/
             ls
             cat inventory
             ansible-playbook -u ubuntu --private-key=~/.ssh/IAM-keypair.pem -i inventory configure-server.yml

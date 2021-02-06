@@ -1,1 +1,2 @@
 [web]
+ansible_user=ubuntu
